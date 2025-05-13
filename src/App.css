@@ -36,11 +36,30 @@ div.languages{
     padding:0px 10px;
 }
 
-.languages-container{
+section.languages-container{
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
     justify-content: center;
     max-width: 500px;
     margin: 0 auto;
+    margin-bottom: 36px;
+}
+
+section.word {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+
+section.word > span {
+    height: 60px;
+    width: 60px;
+    background-color: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    border-bottom: 1px solid #F9F4DA;
+    
 }
