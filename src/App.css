@@ -1,0 +1,13 @@
+header{
+    text-align: center;
+}
+
+header > h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #F9F4DA;
+}
+
+header > p{
+    color: #8E8E8E;
+}
