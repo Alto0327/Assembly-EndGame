@@ -30,3 +30,17 @@ section.game-status > h2{
 section.game-status > p {
     margin-top: 5px;
 }
+
+div.languages{
+    border-radius: 3px;
+    padding:0px 10px;
+}
+
+.languages-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
