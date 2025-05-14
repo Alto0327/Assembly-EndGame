@@ -2,12 +2,19 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import './App.css'
 import Languages from "./Components/Languages";
+import Keyboard from "./Components/KeyboardBtn";
 import { languages } from "./languages";
 
 
 export default function App(){
     const [currentWord, setCurrentWord] = useState('react')
     
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+    const keyboardElement = alphabet.split("").map(letter => (
+        <Keyboard key={letter} letter={letter}/>
+    ))
+
     const languagesElements = languages.map(language=>(
             <Languages 
                 key={language.name} 
@@ -35,6 +42,10 @@ export default function App(){
             <section className="word">
                 {letterElements}
             </section>
+            <section className="keyboard-container">
+                {keyboardElement}
+            </section>
+            <button className="new-game">New Game</button>
         </>
     )
 }
