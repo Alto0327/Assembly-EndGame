@@ -74,7 +74,7 @@ section.keyboard-container{
     margin-bottom: 36px;
 }
 
-button.keyboard-btn--default{
+section.keyboard-container > button{
     background-color: #fcba28;
     color: black;
 
@@ -85,6 +85,15 @@ button.keyboard-btn--default{
     border: solid white 1px;
     cursor: pointer;
 }
+
+section.keyboard-container > button.correct {
+    background-color: #10A95B;
+}
+
+section.keyboard-container > button.wrong {
+    background-color: #EC5D49;
+}
+
 
 button.new-game {
     background-color: #11B5E5;
