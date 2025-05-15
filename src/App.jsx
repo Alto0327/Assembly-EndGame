@@ -2,18 +2,22 @@ import { useState } from "react";
 import Header from "./Components/Header";
 import './App.css'
 import Languages from "./Components/Languages";
-import Keyboard from "./Components/KeyboardBtn";
 import { languages } from "./languages";
+import clsx from "clsx";
 
 
 export default function App(){
     const [currentWord, setCurrentWord] = useState('react')
+    const [guessedLetters, setGuessedLetters] = useState([])
     
-    const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    const keyboardElement = alphabet.split("").map(letter => (
-        <Keyboard key={letter} letter={letter}/>
-    ))
+    const addGuessedLetter = (letter) => {
+        setGuessedLetters(prevLetters => (
+            prevLetters.includes(letter) ? prevLetters: [...prevLetters, letter]
+        ))
+       
+    }
+    const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
     const languagesElements = languages.map(language=>(
             <Languages 
@@ -28,7 +32,28 @@ export default function App(){
         <span key={i}>{letter.toUpperCase()}</span>
     ))
 
-    console.log(letterElements)
+
+    const keyboardElements = alphabet.split("").map(letter => {
+        const isGuessed = guessedLetters.includes(letter)
+        const isCorrect = isGuessed && currentWord.includes(letter)
+        const isWrong = isGuessed && !currentWord.includes(letter)
+        const className = clsx({
+            correct: isCorrect,
+            wrong: isWrong
+        })
+
+        console.log(className)
+        return (
+            <button
+                className={className}
+                key={letter}
+                onClick={() => addGuessedLetter(letter)}
+            >
+                {letter.toUpperCase()}
+            </button>
+        )
+    })
+
     return(
         <>
             <Header/>
@@ -43,7 +68,7 @@ export default function App(){
                 {letterElements}
             </section>
             <section className="keyboard-container">
-                {keyboardElement}
+                {keyboardElements}
             </section>
             <button className="new-game">New Game</button>
         </>
