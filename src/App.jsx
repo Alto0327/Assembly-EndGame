@@ -10,6 +10,10 @@ export default function App(){
     const [currentWord, setCurrentWord] = useState('react')
     const [guessedLetters, setGuessedLetters] = useState([])
     
+    const wrongGuessCount = 
+        guessedLetters.filter(letter => !currentWord.includes(letter)).length
+    console.log(wrongGuessCount)
+
 
     const addGuessedLetter = (letter) => {
         setGuessedLetters(prevLetters => (
@@ -28,10 +32,22 @@ export default function App(){
             />
     ))
 
-    const letterElements = currentWord.split("").map((letter,i) => (
-        <span key={i}>{letter.toUpperCase()}</span>
-    ))
-
+    const letterElements = currentWord.split("").map((letter,i) => {
+        const display = guessedLetters.includes(letter) && currentWord.includes(letter)
+        const className = clsx(
+         "defaultWord",
+        {
+            guessed: display
+        })
+        return(
+           <span 
+                key={i}
+                className={className}
+            >
+                {letter.toUpperCase()}
+            </span>
+        )
+    })
 
     const keyboardElements = alphabet.split("").map(letter => {
         const isGuessed = guessedLetters.includes(letter)
@@ -53,6 +69,7 @@ export default function App(){
             </button>
         )
     })
+   
 
     return(
         <>
@@ -66,6 +83,9 @@ export default function App(){
             </section>
             <section className="word">
                 {letterElements}
+            </section>
+            <section className="wrongGuess">
+                <p>Number of Languages Lost: {wrongGuessCount}</p>
             </section>
             <section className="keyboard-container">
                 {keyboardElements}

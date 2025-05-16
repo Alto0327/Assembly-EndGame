@@ -53,7 +53,8 @@ section.word {
     margin-bottom: 36px;
 }
 
-section.word > span {
+
+section.word > span.defaultWord{
     height: 60px;
     width: 60px;
     background-color: #323232;
@@ -62,6 +63,19 @@ section.word > span {
     align-items: center;
     font-size: 1.75rem;
     border-bottom: 1px solid #F9F4DA;
+    text-indent: -9999px; 
+}
+
+section.word > span.guessed {
+    height: 60px;
+    width: 60px;
+    background-color: #323232;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.75rem;
+    border-bottom: 1px solid #F9F4DA;
+    text-indent: 0px;
     
 }
 
