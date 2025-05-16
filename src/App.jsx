@@ -23,14 +23,18 @@ export default function App(){
     }
     const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-    const languagesElements = languages.map(language=>(
+    const languagesElements = languages.map((language,i)=>{
+        const isLanguageLost = i < wrongGuessCount
+        return(
             <Languages 
-                key={language.name} 
-                name={language.name} 
-                backgroundColor={language.backgroundColor} 
-                color={language.color}
+            key={language.name} 
+            name={language.name} 
+            backgroundColor={language.backgroundColor} 
+            color={language.color}
+            className={`languages ${isLanguageLost ? "lost" : ""}`}
             />
-    ))
+        )
+    })
 
     const letterElements = currentWord.split("").map((letter,i) => {
         const display = guessedLetters.includes(letter) && currentWord.includes(letter)

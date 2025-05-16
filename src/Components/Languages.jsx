@@ -5,7 +5,7 @@ export default function Languages(props){
         color: props.color
     }
     return (
-        <div className='languages' style={styles}>
+        <div className={props.className} style={styles}>
             <p>{props.name}</p>
         </div>
     )
