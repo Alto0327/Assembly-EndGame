@@ -32,6 +32,11 @@ export default function App(){
        
     }
 
+    function startNewGame() {
+        setCurrentWord(getRandomWord())
+        setGuessedLetters([])
+    }
+
     const languagesElements = languages.map((language,i)=>{
         const isLanguageLost = i < wrongGuessCount
         return(
@@ -133,7 +138,12 @@ export default function App(){
             <section className="keyboard-container">
                 {keyboardElements}
             </section>
-            {isGameOver ? <button className="new-game">New Game</button>: null}
+            {isGameOver ?                 
+                <button 
+                    className="new-game" 
+                    onClick={startNewGame}
+                    >New Game
+                </button> : null}
         </>
     )
 }
