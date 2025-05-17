@@ -152,7 +152,10 @@ section.keyboard-container > button:disabled {
     opacity: 0.5
 }
 
-
+.wrongGuesses{
+    text-align: center;
+    
+}
 
 button.new-game {
     background-color: #11B5E5;

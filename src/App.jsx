@@ -132,11 +132,11 @@ export default function App(){
             <section className="word">
                 {letterElements}
             </section>
-            <section className="wrongGuess">
-                <p>Number of Languages Lost: {wrongGuessCount}</p>
-            </section>
             <section className="keyboard-container">
                 {keyboardElements}
+            </section>
+            <section className="wrongGuesses">
+                <p>Number of Languages Lost: {wrongGuessCount}</p>
             </section>
             {isGameOver ?                 
                 <button 
