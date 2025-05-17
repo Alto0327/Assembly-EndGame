@@ -74,6 +74,7 @@ export default function App(){
             <button
                 className={className}
                 key={letter}
+                disabled={isGameOver}
                 onClick={() => addGuessedLetter(letter)}
             >
                 {letter.toUpperCase()}
@@ -90,7 +91,9 @@ export default function App(){
 
     function renderGameStatus() {
         if (!isGameOver && isLastGuessIncorrect) {
-            return <h2 className="farewell-message">Bye!</h2>
+            return <h2 className="farewell-message">
+                 {getFarewellText(languages[wrongGuessCount - 1].name)}
+                </h2>
         }
 
         if (isGameWon) {
