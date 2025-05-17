@@ -9,10 +9,11 @@ import clsx from "clsx";
 export default function App(){
     const [currentWord, setCurrentWord] = useState('react')
     const [guessedLetters, setGuessedLetters] = useState([])
+
     
     const wrongGuessCount = 
         guessedLetters.filter(letter => !currentWord.includes(letter)).length
-    console.log(wrongGuessCount)
+
 
 
     const addGuessedLetter = (letter) => {
@@ -61,8 +62,6 @@ export default function App(){
             correct: isCorrect,
             wrong: isWrong
         })
-
-        console.log(className)
         return (
             <button
                 className={className}
@@ -73,15 +72,43 @@ export default function App(){
             </button>
         )
     })
+
+    const isGameWon = 
+        currentWord.split("").every(letter => guessedLetters.includes(letter))
+    
+    const isGameLost = wrongGuessCount >= languages.length-1 
    
+    const isGameOver = isGameWon|| isGameLost
+    
+    console.log(isGameOver)
+
+    const gameStatusClass = clsx("game-status", {
+        won: isGameWon,
+        lost: isGameLost
+    })
 
     return(
         <>
-            <Header/>
-            <section className="game-status">
-                <h2>You Win</h2>
-                <p>Well Done! 🎉</p>
+            <Header wrongGuessCount={languages.length - 1}/>
+            <section className={gameStatusClass}>
+                {isGameOver ? (
+                    isGameWon ? (
+                        <>
+                            <h2>You win!</h2>
+                            <p>Well done! 🎉</p>
+                        </>
+                    ) : (
+                        <>
+                            <h2>Game over!</h2>
+                            <p>You lose! Better start learning Assembly 😭</p>
+                        </>
+                    )
+                ) : (
+                        null
+                    )
+                }
             </section>
+
             <section className="languages-container">
                 {languagesElements}
             </section>
@@ -94,7 +121,7 @@ export default function App(){
             <section className="keyboard-container">
                 {keyboardElements}
             </section>
-            <button className="new-game">New Game</button>
+            {isGameOver ? <button className="new-game">New Game</button>: null}
         </>
     )
 }
